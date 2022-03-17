@@ -8,9 +8,10 @@ export const Game = ({value}) => {
   const [cellValues,setCellValues]=useState(["","","","","","","","",""]);
   const [xIsNext,setXIsNext]=useState(true);
   const [gameOver,setgameOver]=useState(false);
-  const winningCombination=[];
+  const [winningCombination,setWinningCombination]=useState([]);
   const isCellEmpty=(cellIndex)=>cellValues[cellIndex]==="";
   const [numberOfTurnsLeft,setNumberOfTurnsLeft]=useState(9);
+  const [winner,setWinner]=useState();
   const cellClicked=(cellIndex)=>{
     if(isCellEmpty(cellIndex)){
       
@@ -23,6 +24,8 @@ export const Game = ({value}) => {
     setCellValues(newCellValues);
     setgameOver(calcResult.hasResult);
     setNumberOfTurnsLeft(newNumberOfTurnsLeft);
+    setWinner(calcResult.winner);
+    setWinningCombination(calcResult.winningCombination);
     }
     //console.log('Cell '+ cellIndex+ ' clicked')
   }
@@ -32,7 +35,7 @@ export const Game = ({value}) => {
         <h1>Tic Tac Toe</h1>
         <Board cellValues={cellValues} winningCombination={winningCombination} cellClicked={cellClicked}/>
       </div>
-      <ResultModal gameOver={gameOver}/>
+      <ResultModal gameOver={gameOver} winner={winner}/>
       
     </>
   );

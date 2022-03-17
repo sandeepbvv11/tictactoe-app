@@ -6,7 +6,7 @@ export const ResultModal = (props) => {
   const resultModalClasses=classNames({
       'modal-open':props.gameOver
   })
- 
+  const message=props.winner? "Winner is " + props.winner :"It's a tie";
   return (
     <>
     
@@ -14,7 +14,7 @@ export const ResultModal = (props) => {
         <div id="game-result-modal">
           <div id="result-container">
             <div id="winner-container">
-              <span></span>
+              <span>{message}</span>
             </div>
           </div>
           <div id="new-game-container">
