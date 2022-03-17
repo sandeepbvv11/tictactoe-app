@@ -12,6 +12,14 @@ export const Game = ({value}) => {
   const isCellEmpty=(cellIndex)=>cellValues[cellIndex]==="";
   const [numberOfTurnsLeft,setNumberOfTurnsLeft]=useState(9);
   const [winner,setWinner]=useState();
+  const restartGame=()=>{
+    setXIsNext(true);
+    setCellValues(["","","","","","","","",""]);
+    setgameOver(false);
+    setNumberOfTurnsLeft(9);
+    setWinner(undefined);
+    setWinningCombination([]);
+  }
   const cellClicked=(cellIndex)=>{
     if(isCellEmpty(cellIndex)){
       
@@ -35,7 +43,7 @@ export const Game = ({value}) => {
         <h1>Tic Tac Toe</h1>
         <Board cellValues={cellValues} winningCombination={winningCombination} cellClicked={cellClicked}/>
       </div>
-      <ResultModal gameOver={gameOver} winner={winner}/>
+      <ResultModal gameOver={gameOver} winner={winner} onNewGameClicked={restartGame}/>
       
     </>
   );
